@@ -23,6 +23,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://fitby-fitness-ai-powered-app-in6l.vercel.app",
+    "https://fitby-fitness-ai-powered-app.onrender.com",
     "https://fitby-fitness-ai-powered-app.onrender.com"
     
   ],
@@ -49,7 +50,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 
   // All other routes not starting with /api → React index.html
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
