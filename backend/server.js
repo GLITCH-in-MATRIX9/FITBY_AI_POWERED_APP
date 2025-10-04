@@ -23,7 +23,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://fitby-fitness-ai-powered-app-in6l.vercel.app",
-    // add other allowed origins
+    "https://fitby-fitness-ai-powered-app.onrender.com"
+    
   ],
   credentials: true,
 }));
