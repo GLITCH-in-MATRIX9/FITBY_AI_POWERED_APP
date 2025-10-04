@@ -25,7 +25,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -37,8 +37,7 @@ app.use(cors({
   credentials: true
 }));
 
-// Handle preflight OPTIONS globally
-app.options("*", cors());
+// Handle preflight OPTIONS globally - removed as CORS middleware already handles it
 
 // ---------------------- BODY PARSING ----------------------
 app.use(express.json({ limit: '10mb' }));

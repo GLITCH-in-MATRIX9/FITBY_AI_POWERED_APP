@@ -104,7 +104,7 @@ const Navbar = () => {
 
         {/* Right section (Desktop) */}
         <div className="hidden md:flex items-center space-x-4 relative">
-          
+
           {/* STREAK SETTER BUTTON (New Element) */}
           <button
             onClick={handleSetStreak}

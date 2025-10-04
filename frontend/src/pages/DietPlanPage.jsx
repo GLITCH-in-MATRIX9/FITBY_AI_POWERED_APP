@@ -49,40 +49,40 @@ const DietPlanPage = () => {
       <div className="max-w-2xl w-full mx-auto mt-10 bg-white bg-opacity-90 rounded-xl shadow-lg p-8">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Personalized Diet Plan Generator</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block font-semibold mb-1">Age</label>
-          <input type="number" name="age" value={form.age} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Gender</label>
-          <select name="gender" value={form.gender} onChange={handleChange} required className="w-full border rounded px-3 py-2">
-            <option value="">Select</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Weight (kg)</label>
-          <input type="number" name="weight" value={form.weight} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Fitness Goal</label>
-          <input type="text" name="fitnessGoal" value={form.fitnessGoal} onChange={handleChange} required className="w-full border rounded px-3 py-2" placeholder="e.g. Weight Gain, Weight Loss, Maintenance" />
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Preferences / Allergies</label>
-          <input type="text" name="preferences" value={form.preferences} onChange={handleChange} className="w-full border rounded px-3 py-2" placeholder="e.g. Vegetarian, Nut allergy, etc." />
-        </div>
-        <button type="submit" className="w-full bg-[#c41037] text-white font-bold py-2 rounded hover:bg-[#a30d2c] transition flex items-center justify-center" disabled={loading}>
-          {loading ? (
-            <>
-              <span className="mr-2">Generating...</span>
-              <span className="inline-block w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
-            </>
-          ) : 'Generate Diet Plan'}
-        </button>
-      </form>
+          <div>
+            <label className="block font-semibold mb-1">Age</label>
+            <input type="number" name="age" value={form.age} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Gender</label>
+            <select name="gender" value={form.gender} onChange={handleChange} required className="w-full border rounded px-3 py-2">
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Weight (kg)</label>
+            <input type="number" name="weight" value={form.weight} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Fitness Goal</label>
+            <input type="text" name="fitnessGoal" value={form.fitnessGoal} onChange={handleChange} required className="w-full border rounded px-3 py-2" placeholder="e.g. Weight Gain, Weight Loss, Maintenance" />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1">Preferences / Allergies</label>
+            <input type="text" name="preferences" value={form.preferences} onChange={handleChange} className="w-full border rounded px-3 py-2" placeholder="e.g. Vegetarian, Nut allergy, etc." />
+          </div>
+          <button type="submit" className="w-full bg-[#c41037] text-white font-bold py-2 rounded hover:bg-[#a30d2c] transition flex items-center justify-center" disabled={loading}>
+            {loading ? (
+              <>
+                <span className="mr-2">Generating...</span>
+                <span className="inline-block w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+              </>
+            ) : 'Generate Diet Plan'}
+          </button>
+        </form>
         {error && <div className="mt-4 text-red-600 text-center">{error}</div>}
         {result && (
           <div className="mt-8">

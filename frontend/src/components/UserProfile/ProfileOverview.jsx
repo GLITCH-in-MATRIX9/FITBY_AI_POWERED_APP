@@ -1,16 +1,16 @@
 // src/pages/ProfileOverview.js
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context      const res = await fetch(apiU      const res = await fetch(apiUrl("/api/user/upload-profile-image"), {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });api/user/profile"), {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+import { AuthContext } from "../../context      const res = await fetch(apiU      const res = await fetch(apiUrl("/api/user / upload - profile - image"), {
+method: "POST",
+  headers: { Authorization: `Bearer ${token}` },
+body: formData,
+      }); api / user / profile"), {
+method: "PUT",
+  headers: {
+  "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(fieldsToUpdate),
+body: JSON.stringify(fieldsToUpdate),
       });text";
 import ProfileStats from "../UserProfile/ProfileStats";
 import { useNavigate } from "react-router-dom";
