@@ -22,9 +22,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://fitby-fitness-ai-powered-app-in6l.vercel.app",
+    "https://fitby-ai-powered-app-qk94.vercel.app",
     "https://fitby-fitness-ai-powered-app.onrender.com"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
 
@@ -47,12 +49,7 @@ app.use("/api/personalized-trainer", paymentRoute);
 // ---------------------- REACT FRONTEND ----------------------
 if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "client", "build");
-  app.use(express.static(buildPath));
-
-  // Catch-all for React routes (non-API)
-  app.use((req, res) => {
-    res.sendFile(path.join(buildPath, "index.html"));
-  });
+  app.use(express.static(buildPath))
 }
 
 // ---------------------- MONGODB CONNECTION ----------------------
