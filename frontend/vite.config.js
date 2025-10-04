@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [ svgr({ exportAsDefault: false }),react(), tailwindcss() ],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000',
+      '/api': 'https://fitby-fitness-ai-powered-app.onrender.com',
     },
   },
 })

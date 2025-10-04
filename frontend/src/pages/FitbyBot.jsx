@@ -5,6 +5,9 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import apiUrl from "../utils/api";
 
+
+const BASE_API_URL = "https://fitby-fitness-ai-powered-app.onrender.com";
+
 const FitbyAI = () => {
   const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
