@@ -5,7 +5,7 @@ const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
 
-// Import routes
+// ---------------------- IMPORT ROUTES ----------------------
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const blogRoutes = require("./routes/blogRoutes");
@@ -23,12 +23,11 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://fitby-fitness-ai-powered-app-in6l.vercel.app",
-    "https://fitby-fitness-ai-powered-app.onrender.com",
     "https://fitby-fitness-ai-powered-app.onrender.com"
-    
   ],
   credentials: true,
 }));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -47,12 +46,13 @@ app.use("/api/personalized-trainer", paymentRoute);
 
 // ---------------------- REACT FRONTEND ----------------------
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+  const buildPath = path.join(__dirname, "client", "build");
+  app.use(express.static(buildPath));
 
-  // All other routes not starting with /api → React index.html
+  // Catch-all for React routes (non-API)
   app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
+    res.sendFile(path.join(buildPath, "index.html"));
+  });
 }
 
 // ---------------------- MONGODB CONNECTION ----------------------
