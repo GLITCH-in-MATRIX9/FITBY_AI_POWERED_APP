@@ -4,7 +4,7 @@ import { FaPaperPlane, FaRobot, FaUser } from "react-icons/fa";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-const BASE_API_URL = "http://localhost:5000";
+const BASE_API_URL = "https://fitby-fitness-ai-powered-app.onrender.com";
 
 const FitbyAI = () => {
   const messagesContainerRef = useRef(null);
