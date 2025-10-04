@@ -3,8 +3,7 @@ import axios from "axios";
 import { FaPaperPlane, FaRobot, FaUser } from "react-icons/fa";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-
-const BASE_API_URL = "https://fitby-ai-powered-app.onrender.com";
+import apiUrl from "../utils/api";
 
 const FitbyAI = () => {
   const messagesContainerRef = useRef(null);
@@ -17,9 +16,9 @@ const FitbyAI = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    messagesContainerRef.current?.scrollTo({ 
-      top: messagesContainerRef.current.scrollHeight, 
-      behavior: "smooth" 
+    messagesContainerRef.current?.scrollTo({
+      top: messagesContainerRef.current.scrollHeight,
+      behavior: "smooth"
     });
   }, [messages]);
 
@@ -32,14 +31,14 @@ const FitbyAI = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`${BASE_API_URL}/api/chat`, {
+      const { data } = await axios.post(apiUrl("/api/chat"), {
         message: userMessageContent,
       });
       setMessages(prev => [...prev, { role: "assistant", content: data.reply }]);
     } catch (err) {
-      setMessages(prev => [...prev, { 
-        role: "assistant", 
-        content: "⚠️ Oops, something went wrong. This might be a **CORS error** or the backend server is down. Check your network console!" 
+      setMessages(prev => [...prev, {
+        role: "assistant",
+        content: "⚠️ Oops, something went wrong. This might be a **CORS error** or the backend server is down. Check your network console!"
       }]);
     } finally {
       setLoading(false);
@@ -54,11 +53,10 @@ const FitbyAI = () => {
           <FaRobot />
         </div>
       )}
-      <div className={`px-4 py-3 max-w-xl text-base shadow-md ${
-        role === "user"
+      <div className={`px-4 py-3 max-w-xl text-base shadow-md ${role === "user"
           ? "bg-[#ed6126] text-white rounded-t-xl rounded-bl-xl"
           : "bg-gray-100 text-gray-800 rounded-t-xl rounded-br-xl border border-gray-200"
-      }`}>
+        }`}>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
       </div>
       {role === "user" && (

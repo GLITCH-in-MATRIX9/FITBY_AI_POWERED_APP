@@ -1,8 +1,20 @@
 // src/pages/ProfileOverview.js
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context      const res = await fetch(apiU      const res = await fetch(apiUrl("/api/user/upload-profile-image"), {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });api/user/profile"), {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(fieldsToUpdate),
+      });text";
 import ProfileStats from "../UserProfile/ProfileStats";
 import { useNavigate } from "react-router-dom";
+import apiUrl, { imageUrl } from "../../utils/api";
 import {
   FaUser, FaEnvelope, FaMapMarkerAlt, FaWeight, FaBirthdayCake,
   FaVenusMars, FaRulerVertical, FaPercentage, FaBullseye, FaRunning,
@@ -36,7 +48,7 @@ const ProfileOverview = () => {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/user/profile", {
+        const res = await fetch(apiUrl("/api/user/profile"), {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch profile");
@@ -50,7 +62,7 @@ const ProfileOverview = () => {
 
     const fetchWorkouts = async () => {
       try {
-        const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/workouts", {
+        const res = await fetch(apiUrl("/api/workouts"), {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch workouts");
@@ -63,7 +75,7 @@ const ProfileOverview = () => {
 
     const fetchPoints = async () => {
       try {
-        const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/workouts/points", {
+        const res = await fetch(apiUrl("/api/workouts/points"), {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch points");
@@ -81,7 +93,7 @@ const ProfileOverview = () => {
 
   const fetchLeaderboard = async () => {
     try {
-      const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/user/leaderboard", {
+      const res = await fetch(apiUrl("/api/user/leaderboard"), {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -93,7 +105,7 @@ const ProfileOverview = () => {
             ...user,
             rank: index + 1,
             image: user.image
-              ? `https://fitby-fitness-ai-powered-app.onrender.com/uploads/${user.image}`
+              ? imageUrl(user.image)
               : "https://cdn-icons-png.flaticon.com/512/847/847969.png",
           }));
       }
@@ -103,7 +115,7 @@ const ProfileOverview = () => {
           name: profile.name || "You",
           rank: "—",
           image: profile.image
-            ? `https://fitby-fitness-ai-powered-app.onrender.com/uploads/${profile.image}`
+            ? imageUrl(profile.image)
             : "https://cdn-icons-png.flaticon.com/512/847/847969.png",
         });
       }
@@ -116,7 +128,7 @@ const ProfileOverview = () => {
           name: profile.name || "You",
           rank: "—",
           image: profile.image
-            ? `https://fitby-fitness-ai-powered-app.onrender.com/uploads/${profile.image}`
+            ? imageUrl(profile.image)
             : "https://cdn-icons-png.flaticon.com/512/847/847969.png",
         }]);
       }
@@ -247,7 +259,7 @@ const ProfileOverview = () => {
             previewUrl
               ? previewUrl
               : profile.image
-                ? `https://fitby-fitness-ai-powered-app.onrender.com/uploads/${profile.image}`
+                ? imageUrl(profile.image)
                 : null
           }
           onImageUpload={(file) => {

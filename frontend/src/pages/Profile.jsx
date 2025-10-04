@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import apiUrl from "../utils/api";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -13,7 +14,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/user/profile", {
+        const res = await fetch(apiUrl("/api/user/profile"), {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

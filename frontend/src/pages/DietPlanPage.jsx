@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import dietBg from '../assets/diet-bg.jpg';
+import apiUrl from '../utils/api';
 
 const DietPlanPage = () => {
   const [form, setForm] = useState({
@@ -23,7 +24,7 @@ const DietPlanPage = () => {
     setError('');
     setResult(null);
     try {
-      const res = await fetch('/api/orkes-diet/task', {
+      const res = await fetch(apiUrl('/api/orkes-diet/task'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

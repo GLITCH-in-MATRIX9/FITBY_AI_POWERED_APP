@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import apiUrl from "../../utils/api";
 
 // --- MUSCLE GROUPS DEFINITION WITH GENDER MAPPING ---
 const MUSCLE_GROUPS_MAPPING = [
@@ -303,7 +304,7 @@ const ManageVideos = ({ onVideoAdded }) => {
 
   const fetchVideos = async () => {
     try {
-      const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/videos");
+      const res = await fetch(apiUrl("/api/videos"));
       const data = await res.json();
       setVideos(data);
     } catch (err) {
@@ -322,7 +323,7 @@ const ManageVideos = ({ onVideoAdded }) => {
     setMessage(null);
 
     try {
-      const res = await fetch(`https://fitby-fitness-ai-powered-app.onrender.com/api/videos/${id}`, {
+      const res = await fetch(apiUrl(`/api/videos/${id}`), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -342,7 +343,7 @@ const ManageVideos = ({ onVideoAdded }) => {
   const handleUpdate = async (id, updatedData) => {
     setMessage(null);
     try {
-      const res = await fetch(`https://fitby-fitness-ai-powered-app.onrender.com/api/videos/${id}`, {
+      const res = await fetch(apiUrl(`/api/videos/${id}`), {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData),
@@ -366,7 +367,7 @@ const ManageVideos = ({ onVideoAdded }) => {
   const handleAddVideo = async (newVideo) => {
     setMessage(null);
     try {
-      const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/videos", {
+      const res = await fetch(apiUrl("/api/videos"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newVideo),

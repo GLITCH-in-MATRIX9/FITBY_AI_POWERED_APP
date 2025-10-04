@@ -19,6 +19,7 @@
     "bcryptjs": "^3.0.2",
     "cloudinary": "^1.30.0",
     "conductor-javascript": "^0.0.6",
+    "cor": "^0.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",

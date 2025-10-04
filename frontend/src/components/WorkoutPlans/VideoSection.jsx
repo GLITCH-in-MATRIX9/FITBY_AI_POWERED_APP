@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import PoseTracker from "./PoseTracker";
+import apiUrl from "../../utils/api";
 
 // --- Utility to extract YouTube ID ---
 const getYouTubeId = (url) => {
@@ -33,7 +34,7 @@ const VideoSection = ({ muscle, gender, newVideo }) => {
       setError("");
       try {
         const res = await fetch(
-          `https://fitby-fitness-ai-powered-app.onrender.com/api/videos?muscle=${muscle}&gender=${gender}`
+          apiUrl(`/api/videos?muscle=${muscle}&gender=${gender}`)
         );
         if (!res.ok) throw new Error("Failed to fetch videos");
         const data = await res.json();

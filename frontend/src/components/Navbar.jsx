@@ -5,6 +5,7 @@ import logo2 from "../assets/FITBY.png";
 import { FaFire, FaBars, FaTimes } from "react-icons/fa";
 import { AiOutlineFire } from "react-icons/ai"; // Imported for outline style
 import { AuthContext } from "../context/AuthContext.jsx";
+import { imageUrl } from "../utils/api";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -35,7 +36,7 @@ const Navbar = () => {
   };
 
   const profileImageUrl = user?.image
-    ? `https://fitby-fitness-ai-powered-app.onrender.com/uploads/${user.image}`
+    ? imageUrl(user.image)
     : "https://cdn-icons-png.flaticon.com/512/847/847969.png";
 
   return (

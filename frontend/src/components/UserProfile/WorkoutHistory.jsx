@@ -8,6 +8,7 @@ import {
   FaDownload,
 } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
+import apiUrl from "../../utils/api";
 
 const WorkoutHistory = () => {
   const { token, user, setUser } = useContext(AuthContext);
@@ -35,7 +36,7 @@ const WorkoutHistory = () => {
     if (!token) return;
     const fetchHistory = async () => {
       try {
-        const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/workouts", {
+        const res = await fetch(apiUrl("/api/workouts"), {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch workouts");
