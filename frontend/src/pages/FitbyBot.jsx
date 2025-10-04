@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 
 const BASE_API_URL = "https://fitby-fitness-ai-powered-app.onrender.com";
 
+
 const FitbyAI = () => {
   const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
