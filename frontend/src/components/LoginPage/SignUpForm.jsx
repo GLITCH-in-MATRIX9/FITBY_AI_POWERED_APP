@@ -1,5 +1,4 @@
-import { useState, useContext, useRef } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState, useRef, useEffect } from "react";
 import { FaImage } from "react-icons/fa";
 
 const SignUpForm = ({ switchToLogin }) => {
@@ -9,15 +8,27 @@ const SignUpForm = ({ switchToLogin }) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { login } = useContext(AuthContext);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Clean up previous preview URL to prevent memory leaks
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
       setImage(file);
       setPreview(URL.createObjectURL(file));
     }
   };
+
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -28,7 +39,8 @@ const SignUpForm = ({ switchToLogin }) => {
     formData.append("image", image); // must be a File object
 
     try {
-      const res = await fetch("https://fitby-fitness-ai-powered-app.onrender.com/api/auth/signup", {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await fetch(`${apiUrl}/api/auth/signup`, {
         method: "POST",
         body: formData,
       });
